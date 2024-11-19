@@ -1,0 +1,7 @@
+services:
+  front:
+    build: ./
+    volumes:
+      - .:/japa
+    ports:
+      - 8003:5173

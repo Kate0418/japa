@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Convert from "./Convert"
 
 function Form () {
     const [output, setOutput] = useState<string>('');
     const [code, setCode] = useState<string>('')
     const [input, setInput] = useState<string>('');
+
+    useEffect(() => {
+        const storedCode = localStorage.getItem('code');
+        if (storedCode) {
+          setCode(storedCode);
+        }
+        const storedInput = localStorage.getItem('input');
+        if (storedInput) {
+          setInput(storedInput);
+        }
+      }, [])
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -32,14 +43,23 @@ function Form () {
                 <div className="grid lg:grid-cols-[2fr_1fr] gap-4 h-full">
                     <div className="pb-10">
                         <p>コードエリア</p>
-                        <textarea className='w-full h-80 border' name='code' wrap="off" value={code} onKeyDown={keyDown} onChange={(e) => setCode(e.target.value)} />
+                        <textarea className='w-full h-80 border' name='code' wrap="off" value={code} onKeyDown={keyDown}
+                            onChange={(e) => {
+                                localStorage.setItem('code', e.target.value);
+                                setCode(e.target.value)}
+                            }
+                        />
                         
                         <div className='pt-2 pr-2 flex justify-end'>
                              <button className='px-4 py-1 border text-lg rounded-xl' type='submit'>実行</button>
                         </div>
 
                         <p className="pt-5">入力エリア</p>
-                        <textarea className='w-full h-80 border' name='input' onChange={(e) => setInput(e.target.value)} />
+                        <textarea className='w-full h-80 border' name='input' value={input}
+                          onChange={(e) => {
+                            localStorage.setItem('input', e.target.value);
+                            setInput(e.target.value);
+                          }} />
                     </div>
                     <div>
                         <p>出力結果</p>

@@ -22,7 +22,7 @@ function Convert(code: string, input: string): string {
         func: /^(.+)（(.*)）$/,  // 関数
         list: /^「(.+?(?:、.+)*)」$/,  // リスト
         item: /^(.+?)((?:「(.*?)」)+)$/,  // リストの値
-        num: /^[０１２３４５６７８９ー]+$/,  // 数字
+        num: /^ー?[０１２３４５６７８９]+$/,  // 数字
         fin: /(　＋　|　ー　|　＊　|　｜　|　％　)/
     }
     const func_types = {
@@ -253,7 +253,9 @@ function Convert(code: string, input: string): string {
     }
     exec_code += '}'.repeat(past_index);
 
-    // return exec_code;
+    //デバック
+    console.log(exec_code);
+
     eval(exec_code);
     return output_list.join("\n");
 }

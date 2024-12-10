@@ -5,3 +5,4 @@ services:
       - .:/japa
     ports:
       - 8003:5173
+    restart: always

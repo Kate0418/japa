@@ -62,7 +62,7 @@ const initial_types = {
         assign: /^([^＝]+)　＝　([^＝]+)$/,  // 代入式
         funcs: /^(?:[^。]+(?:。[^。]+)+)$/,
     }
-    const arg_types = {
+const arg_types = {
         funcs: /^(?:[^。]+(?:。[^。]+)+)$/,
         func: /^(.+)（(.*)）$/,  // 関数
         list: /^「(.+?(?:、.+)*)」$/,  // リスト
@@ -70,7 +70,7 @@ const initial_types = {
         num: /^ー?[０１２３４５６７８９]+$/,  // 数字
         fin: /(　＋　|　ー　|　＊　|　｜　|　％　)/
     }
-    const func_types = {
+const func_types = {
         int: /^数字（(.*)）$/,
         str: /^文字（(.*)）$/,
         split: /^分割（(.*)）$/,
